@@ -665,6 +665,10 @@ class LayoutLMv2Model(LayoutLMv2PreTrainedModel):
         visual_embeddings = self.visual_proj(self.visual(image))
         position_embeddings = self.embeddings.position_embeddings(position_ids)
         spatial_position_embeddings = self.embeddings._cal_spatial_position_embeddings(bbox)
+        print(visual_embeddings.shape)
+        print(position_embeddings.shape)
+        print(spatial_position_embeddings.shape)
+
         embeddings = visual_embeddings + position_embeddings + spatial_position_embeddings
         if self.has_visual_segment_embedding:
             embeddings += self.visual_segment_embedding
